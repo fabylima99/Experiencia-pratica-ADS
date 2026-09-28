@@ -178,16 +178,24 @@ form input {
     padding: var(--spacing-xs) var(--spacing-sm);
 }
 
-form input:not(:placeholder-shown):valid {
+form input.campo-valido {
     border-color: var(--success-color);
 }
 
-form input:user-invalid {
+form input.campo-invalido {
     border-color: var(--error-color);
 }
 
 form input:focus {
     border-color: var(--focus-ring);
+}
+
+.erro-campo {
+    display: block;
+    color: var(--error-color);
+    font-size: var(--font-size-xs);
+    margin-top: 0.25rem;
+    margin-bottom: var(--spacing-sm);
 }
 
 input[type="submit"] {
