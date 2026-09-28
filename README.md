@@ -4,6 +4,15 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 
 **Demo:** [fabylima99.github.io/Experiencia-pratica-ADS](https://fabylima99.github.io/Experiencia-pratica-ADS/)
 
+## Funcionalidades
+
+- **Navegação SPA:** troca de página (Início, Projetos, Cadastro) sem recarregar o navegador, com URL e histórico atualizados via History API.
+- **Apresentação institucional:** exibição de informações da ONG e formas de contato.
+- **Divulgação de projetos:** listagem das frentes de voluntariado e das formas de doação.
+- **Cadastro de voluntários:** formulário com validação nativa do HTML (campos obrigatórios, padrões de CPF/telefone/CEP) e feedback visual de sucesso.
+- **Persistência local:** os dados enviados no cadastro são salvos no `localStorage` do navegador.
+- **Layout responsivo:** menu hamburguer em telas pequenas e grid adaptável (12 → 6 → 4 → 3 → 2 colunas) conforme o tamanho da tela.
+
 ## Tecnologias Utilizadas
 
 - **HTML5 Semântico** — marcação estruturada com `header`, `nav`, `main`, `section` e `footer`, visando acessibilidade e SEO.
@@ -41,7 +50,7 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
    ```bash
    git clone <url-do-repositorio>
    ```
-2. Abra a pasta do projeto no **Antigravity IDE**.
+2. Abra a pasta do projeto no seu editor de código preferido (ex: **Antigravity IDE**, VS Code).
 3. Instale a extensão **Live Server** ou **Five Server**, caso ainda não tenha.
 4. Clique com o botão direito no arquivo `index.html` e selecione **"Open with Live Server"** (ou **"Open with Five Server"**).
 5. O navegador abrirá automaticamente o projeto em `http://localhost:5500` (ou porta equivalente), com atualização automática a cada alteração salva.
@@ -65,4 +74,4 @@ O fluxo utilizado consiste em: realizar alterações localmente, revisar com `gi
 
 **Autoria:** Fabiane Lima — Estudante de Análise e Desenvolvimento de Sistemas.
 
-**Licença:** Este projeto está sob a licença [MIT](LICENSE). Foi desenvolvido para fins educacionais, como parte das atividades práticas da disciplina de Desenvolvimento Front-end para Web.
+**Licença:** Este projeto foi desenvolvido para fins educacionais, como parte das atividades práticas da disciplina de Desenvolvimento Front-end para Web.
