@@ -48,7 +48,7 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/fabylima99/Experiencia-pratica-ADS.git
    ```
 2. Abra a pasta do projeto no seu editor de código preferido (ex: **Antigravity IDE**, VS Code).
 3. Instale a extensão **Live Server** ou **Five Server**, caso ainda não tenha.
