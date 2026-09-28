@@ -14,8 +14,11 @@ function renderizarConteudo(caminho) {
   const container = document.querySelector("main");
   const tituloH1 = document.querySelector("header h1") || document.querySelector("h1");
 
-  // Normalização: se a rota for a raiz ("/") ou vazia, direciona para "/index.html"
-  const rotaTratada = (caminho === "/" || caminho === "") ? "/index.html" : caminho;
+  // Considera só o nome do arquivo (ignora qualquer subpasta, como a criada pelo GitHub Pages:
+  // "/Experiencia-pratica-ADS/cadastro.html" deve casar com a mesma chave que "/cadastro.html")
+  const partesDoCaminho = caminho.split("/").filter(Boolean);
+  const arquivo = partesDoCaminho[partesDoCaminho.length - 1];
+  const rotaTratada = arquivo && arquivo.endsWith(".html") ? "/" + arquivo : "/index.html";
 
   // Injeta o HTML da rota atual no container (ou exibe 404 se não encontrar)
   container.innerHTML = rotas[rotaTratada] || "<h2>404</h2><p>Página não encontrada</p>";
@@ -39,15 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // Impede o comportamento padrão do link de recarregar a página inteira
       event.preventDefault();
 
-      // Obtém o endereço do link e garante que ele comece com "/"
-      const href = link.getAttribute("href");
-      const caminho = href.startsWith("/") ? href : "/" + href;
+      // Resolve o href do link relativo à página atual (respeita subpastas, como a do GitHub Pages)
+      const destino = new URL(link.getAttribute("href"), window.location.href);
 
       // Atualiza a URL na barra de endereço do navegador sem dar refresh
-      window.history.pushState({}, "", caminho);
-      
+      window.history.pushState({}, "", destino.pathname);
+
       // Renderiza o novo conteúdo na tela
-      renderizarConteudo(caminho);
+      renderizarConteudo(destino.pathname);
     });
   });
 

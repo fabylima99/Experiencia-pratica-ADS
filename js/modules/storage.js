@@ -3,15 +3,20 @@ export function salvarCadastro(event) {
   // Impede o envio padrão do formulário, que recarregaria a página
   event.preventDefault();
 
+  const formulario = event.target;
+
   // Procura o campo de e-mail; só existe na página de cadastro
-  const inputEmail = document.querySelector("#email");
+  const inputEmail = formulario.querySelector("#email");
 
   if (inputEmail) {
+    // Lê todos os campos preenchidos no formulário (nome, e-mail, CPF, endereço...)
+    const dadosCadastro = Object.fromEntries(new FormData(formulario).entries());
+
     // Lê a lista de cadastros já salva no navegador (ou começa uma lista vazia)
     const listaCadastros = JSON.parse(localStorage.getItem("cadastrosVoluntarios")) || [];
 
-    // Adiciona o e-mail digitado ao final da lista
-    listaCadastros.push({ email: inputEmail.value });
+    // Adiciona o cadastro completo ao final da lista
+    listaCadastros.push(dadosCadastro);
 
     // Grava a lista atualizada no LocalStorage, convertida para texto (JSON)
     localStorage.setItem("cadastrosVoluntarios", JSON.stringify(listaCadastros));
