@@ -2,8 +2,8 @@
     /* Paleta de cores */
     --primary-color: #1b365d;
     --primary-hover: #122440;
-    --secondary-color: #e65c00;
-    --secondary-hover: #cc5200;
+    --secondary-color: #b34700;
+    --secondary-hover: #8a3800;
     --text-color: #222222;
     --text-muted: #666666;
     --background-color: #f5f5f5;
@@ -75,6 +75,26 @@ header {
     align-items: center;
 }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: var(--spacing-sm) var(--spacing-md);
+    z-index: 100;
+    text-decoration: none;
+    transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+main:focus {
+    outline: none;
+}
+
 .apresentacao {
     display: flex;
     flex-direction: column;
@@ -84,6 +104,11 @@ header {
 
 .menu-links {
     display: none;
+}
+
+.menu-links.aberto {
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-links a {
@@ -222,5 +247,38 @@ input[type="submit"]:hover {
     .card,
     section {
         grid-column: span 2;
+    }
+}
+
+/* Modo escuro (prefers-color-scheme) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212;
+        --card-background: #1e1e1e;
+        --text-color: #f0f0f0;
+        --text-muted: #b0b0b0;
+        --border-color: #444444;
+        --primary-color: #8fb8e8;
+        --primary-hover: #6b9bd1;
+        --secondary-color: #ff9147;
+        --secondary-hover: #ffab6b;
+    }
+
+    /* Fundos com texto branco mantêm o tom escuro para contraste */
+    button {
+        background-color: #b34700;
+    }
+
+    input[type="submit"],
+    .skip-link {
+        background-color: #1b365d;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #122440;
+    }
+
+    .menu-links a:focus {
+        border-color: #8fb8e8;
     }
 }

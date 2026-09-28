@@ -10,12 +10,12 @@ const titulosPaginas = {
 };
 
 // Função responsável por atualizar o conteúdo da tela e o cabeçalho
-function renderizarConteudo(caminho) {
+// moverFoco: true em navegação via SPA; false no carregamento inicial
+function renderizarConteudo(caminho, moverFoco = false) {
   const container = document.querySelector("main");
   const tituloH1 = document.querySelector("header h1") || document.querySelector("h1");
 
-  // Considera só o nome do arquivo (ignora qualquer subpasta, como a criada pelo GitHub Pages:
-  // "/Experiencia-pratica-ADS/cadastro.html" deve casar com a mesma chave que "/cadastro.html")
+  // Usa apenas o nome do arquivo, ignorando subpastas (compatível com GitHub Pages)
   const partesDoCaminho = caminho.split("/").filter(Boolean);
   const arquivo = partesDoCaminho[partesDoCaminho.length - 1];
   const rotaTratada = arquivo && arquivo.endsWith(".html") ? "/" + arquivo : "/index.html";
@@ -26,6 +26,12 @@ function renderizarConteudo(caminho) {
   // Atualiza o texto do <h1> caso ele exista no HTML
   if (tituloH1 && titulosPaginas[rotaTratada]) {
     tituloH1.textContent = titulosPaginas[rotaTratada];
+  }
+
+  document.title = titulosPaginas[rotaTratada] || "Página não encontrada";
+
+  if (moverFoco) {
+    container.focus();
   }
 }
 
@@ -42,21 +48,30 @@ document.addEventListener("DOMContentLoaded", () => {
       // Impede o comportamento padrão do link de recarregar a página inteira
       event.preventDefault();
 
-      // Resolve o href do link relativo à página atual (respeita subpastas, como a do GitHub Pages)
+      // Resolve o href relativo à página atual (compatível com subpastas)
       const destino = new URL(link.getAttribute("href"), window.location.href);
 
       // Atualiza a URL na barra de endereço do navegador sem dar refresh
       window.history.pushState({}, "", destino.pathname);
 
-      // Renderiza o novo conteúdo na tela
-      renderizarConteudo(destino.pathname);
+      renderizarConteudo(destino.pathname, true);
     });
   });
 
   // Escuta os botões "Voltar" e "Avançar" do histórico do navegador
   window.addEventListener("popstate", () => {
-    renderizarConteudo(window.location.pathname);
+    renderizarConteudo(window.location.pathname, true);
   });
+
+  const botaoMenu = document.querySelector(".menu-hamburger");
+  const menuLinks = document.querySelector(".menu-links");
+
+  if (botaoMenu && menuLinks) {
+    botaoMenu.addEventListener("click", () => {
+      const menuAberto = menuLinks.classList.toggle("aberto");
+      botaoMenu.setAttribute("aria-expanded", menuAberto);
+    });
+  }
 });
 
 // Escuta o envio de formulários na página para salvar os dados no storage

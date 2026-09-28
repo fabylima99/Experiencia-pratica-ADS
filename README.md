@@ -19,6 +19,7 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 - **CSS3** — Design System próprio com variáveis em `:root`, layout responsivo (Flexbox/Grid) e estilização do menu, formulários e componentes.
 - **JavaScript ES6+ (Modules)** — lógica dividida em módulos (`import`/`export`), roteamento client-side via History API (`pushState`/`popstate`) e persistência de dados no `localStorage`.
 - **Bootstrap 5.3** — componentes e classes utilitárias para estilização do formulário de cadastro.
+- **Vite** — bundler usado para gerar um build de produção minificado (HTML/CSS/JS) e otimizar imagens (WebP + compressão via `vite-plugin-image-optimizer`).
 - **Git/GitHub** — versionamento e histórico de commits do desenvolvimento.
 
 ## Estrutura de Diretórios
@@ -27,10 +28,17 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 ├── index.html          # Página inicial (apresentação da ONG e contato)
 ├── cadastro.html        # Página de cadastro de voluntários
 ├── projetos.html         # Página de projetos (voluntariado e doações)
+├── package.json          # Dependências e scripts do build (Vite)
+├── vite.config.js         # Configuração do build de produção
+├── .gitignore              # Exclui node_modules/ e dist/ do repositório
 ├── css/
 │   └── styles.css        # Design System e estilos globais do site
 ├── img/
-│   └── cachorro_fundo_rosa.jpg   # Imagens utilizadas nas páginas
+│   ├── cachorro_fundo_rosa.jpg        # Imagem original (não referenciada nas páginas)
+│   ├── cachorro_fundo_rosa-600w.jpg    # Variante otimizada, telas comuns (fallback)
+│   ├── cachorro_fundo_rosa-600w.webp   # Variante otimizada, telas comuns
+│   ├── cachorro_fundo_rosa-1200w.jpg   # Variante otimizada, telas retina (fallback)
+│   └── cachorro_fundo_rosa-1200w.webp  # Variante otimizada, telas retina
 └── js/
     ├── main.js            # Ponto de entrada: inicializa o roteamento SPA e os eventos de formulário
     └── modules/
@@ -40,7 +48,7 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 
 - **Raiz (`/`):** contém os três arquivos HTML que servem como pontos de entrada das páginas.
 - **`/css`:** concentra o Design System (cores, tipografia, espaçamentos) e a responsividade do layout.
-- **`/img`:** armazena os recursos visuais (imagens) utilizados no site.
+- **`/img`:** armazena os recursos visuais do site, incluindo as variantes otimizadas (WebP/JPEG, em diferentes resoluções) usadas via `srcset`.
 - **`/js`:** contém o script principal (`main.js`), responsável por orquestrar a navegação sem recarregar a página.
 - **`/js/modules`:** módulos ES6 reutilizáveis, separando as responsabilidades de roteamento (`rotas.js`) e armazenamento local (`storage.js`).
 
@@ -54,6 +62,17 @@ Aplicação web front-end desenvolvida para uma ONG de proteção e resgate anim
 3. Instale a extensão **Live Server** ou **Five Server**, caso ainda não tenha.
 4. Clique com o botão direito no arquivo `index.html` e selecione **"Open with Live Server"** (ou **"Open with Five Server"**).
 5. O navegador abrirá automaticamente o projeto em `http://localhost:5500` (ou porta equivalente), com atualização automática a cada alteração salva.
+
+## Build de Produção
+
+O projeto usa o Vite para gerar uma versão otimizada (HTML/CSS/JS minificados e imagens comprimidas):
+
+```bash
+npm install
+npm run build
+```
+
+O resultado é gerado na pasta `dist/` (ignorada pelo Git). O site publicado no GitHub Pages continua servindo o código-fonte original — o build serve para gerar uma versão de produção otimizada e mensurar o ganho de desempenho.
 
 ## Fluxo de Versionamento
 

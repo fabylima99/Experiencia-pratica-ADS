@@ -10,10 +10,12 @@
 </head>
 
 <body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
     <header><h1>Página Inicial</h1></header>
 
     <nav>
-        <button class="menu-hamburger">&#9776;</button>
+        <button class="menu-hamburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
         <ul class="menu-links">
             <li><a href="index.html">Página Inicial</a></li>
             <li><a href="cadastro.html">Cadastro</a></li>
@@ -21,11 +23,15 @@
         </ul>
     </nav>
 
-    <main>
+    <main id="conteudo" tabindex="-1">
         <section id="apresentacao">
             <h2>Bem-vindo à nossa ONG</h2>
             <p>Ajudamos animais resgatados a encontrarem um lar amoroso.</p>
-            <img src="img/cachorro_fundo_rosa.jpg" alt="Cachorro sentado de frente à um câmera em um fundo rosa claro" width="600">
+            <picture>
+                <source type="image/webp" srcset="img/cachorro_fundo_rosa-600w.webp 600w, img/cachorro_fundo_rosa-1200w.webp 1200w" sizes="600px">
+                <source type="image/jpeg" srcset="img/cachorro_fundo_rosa-600w.jpg 600w, img/cachorro_fundo_rosa-1200w.jpg 1200w" sizes="600px">
+                <img src="img/cachorro_fundo_rosa-600w.jpg" alt="Cachorro sentado de frente à um câmera em um fundo rosa claro" width="600">
+            </picture>
         </section>
 
         <section id="contato">

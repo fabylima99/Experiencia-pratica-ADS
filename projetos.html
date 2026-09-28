@@ -10,17 +10,20 @@
     </head>
 
     <body>
+        <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
         <header><h1>Projetos</h1></header>
 
         <nav>
-            <ul>
+            <button class="menu-hamburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+            <ul class="menu-links">
                 <li><a href="index.html">Página Inicial</a></li>
                 <li><a href="cadastro.html">Cadastro</a></li>
                 <li><a href="projetos.html">Projetos</a></li>
             </ul>
         </nav>
 
-        <main class="grid-container">
+        <main id="conteudo" class="grid-container" tabindex="-1">
             <section id="voluntariado">
                 <h2>Trabalho Voluntário</h2>
                 <p>Apoie nossa causa dedicando seu tempo aos animais resgatados. Você pode ajudar em diversas frentes:</p>

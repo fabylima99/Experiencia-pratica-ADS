@@ -6,7 +6,11 @@ export const rotas = {
     <section id="apresentacao">
       <h2>Bem-vindo à nossa ONG</h2>
       <p>Ajudamos animais resgatados a encontrarem um lar amoroso.</p>
-      <img src="img/cachorro_fundo_rosa.jpg" alt="Cachorro sentado" width="600">
+      <picture>
+        <source type="image/webp" srcset="img/cachorro_fundo_rosa-600w.webp 600w, img/cachorro_fundo_rosa-1200w.webp 1200w" sizes="600px">
+        <source type="image/jpeg" srcset="img/cachorro_fundo_rosa-600w.jpg 600w, img/cachorro_fundo_rosa-1200w.jpg 1200w" sizes="600px">
+        <img src="img/cachorro_fundo_rosa-600w.jpg" alt="Cachorro sentado de frente à um câmera em um fundo rosa claro" width="600">
+      </picture>
     </section>
 
     <section id="contato">
@@ -45,7 +49,7 @@ export const rotas = {
       <p>Preencha os campos abaixo para se cadastrar em nossa ONG:</p>
 
       <form>
-        <div class="alerta alerta-sucesso">✓ Cadastro realizado com sucesso! Os dados foram salvos.</div>
+        <div id="mensagem-sucesso" class="alerta alerta-sucesso" role="status" aria-live="polite" hidden>✓ Cadastro realizado com sucesso! Os dados foram salvos.</div>
 
         <fieldset>
           <legend>Dados Pessoais</legend>

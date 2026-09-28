@@ -21,7 +21,9 @@ export function salvarCadastro(event) {
     // Grava a lista atualizada no LocalStorage, convertida para texto (JSON)
     localStorage.setItem("cadastrosVoluntarios", JSON.stringify(listaCadastros));
 
-    // Avisa a pessoa que o cadastro foi salvo
-    alert("Cadastro realizado com sucesso!");
+    const mensagemSucesso = document.querySelector("#mensagem-sucesso");
+    if (mensagemSucesso) {
+      mensagemSucesso.hidden = false;
+    }
   }
 }
