@@ -48,7 +48,7 @@ export const rotas = {
       <h2>Formulário de Cadastro</h2>
       <p>Preencha os campos abaixo para se cadastrar em nossa ONG:</p>
 
-      <form>
+      <form novalidate>
         <div id="mensagem-sucesso" class="alerta alerta-sucesso" role="status" aria-live="polite" hidden>✓ Cadastro realizado com sucesso! Os dados foram salvos.</div>
 
         <fieldset>
